@@ -17,10 +17,19 @@ export default function CartPage() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const validatePhone = (phone: string): string => {
+    const digits = phone.replace(/\D/g, '');
+    if (!digits) return 'Phone number is required';
+    if (digits.length !== 11) return 'Phone number must be 11 digits (e.g. 03XX XXXXXXX)';
+    if (!digits.startsWith('03')) return 'Phone number must start with 03';
+    return '';
+  };
+
   const validate = (): boolean => {
     const newErrors: Record<string, string> = {};
     if (!customer.name.trim()) newErrors.name = 'Name is required';
-    if (!customer.phone.trim()) newErrors.phone = 'Phone number is required';
+    const phoneError = validatePhone(customer.phone);
+    if (phoneError) newErrors.phone = phoneError;
     if (!customer.area.trim()) newErrors.area = 'Area is required';
     if (!customer.address.trim()) newErrors.address = 'Address is required';
     setErrors(newErrors);
@@ -168,14 +177,30 @@ export default function CartPage() {
             <div>
               <input
                 type="tel"
-                placeholder="Phone Number *"
+                placeholder="Phone Number * (e.g. 03XX XXXXXXX)"
                 value={customer.phone}
-                onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
+                maxLength={11}
+                onChange={(e) => {
+                  // Allow digits only
+                  const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 11);
+                  setCustomer({ ...customer, phone: digitsOnly });
+                  // Clear error on change if previously set
+                  if (errors.phone) {
+                    setErrors((prev) => ({ ...prev, phone: '' }));
+                  }
+                }}
                 className={`w-full bg-transparent border text-white placeholder-white/30 text-sm tracking-wider px-4 py-3 focus:outline-none transition-colors duration-300 ${
                   errors.phone ? 'border-red-500/50' : 'border-white/20 focus:border-white/40'
                 }`}
               />
-              {errors.phone && <p className="text-red-400/70 text-xs mt-1">{errors.phone}</p>}
+              {errors.phone
+                ? <p className="text-red-400/70 text-xs mt-1.5">{errors.phone}</p>
+                : customer.phone.length > 0 && customer.phone.length < 11
+                  ? <p className="text-white/30 text-xs mt-1.5">{11 - customer.phone.length} digit{11 - customer.phone.length !== 1 ? 's' : ''} remaining</p>
+                  : customer.phone.length === 11 && customer.phone.startsWith('03')
+                    ? <p className="text-green-400/60 text-xs mt-1.5">✓ Valid Pakistani number</p>
+                    : null
+              }
             </div>
 
             <div>
