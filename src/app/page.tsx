@@ -2,13 +2,14 @@ import Link from 'next/link';
 import { products } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
 import { siteConfig } from '@/lib/config';
+import { ReviewSectionClient } from '@/components/ReviewSectionClient';
 
 export default function HomePage() {
   const featuredProducts = products.filter((p) => p.featured).slice(0, 6);
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero Section — keeps dark/black for dramatic impact */}
       <section className="relative min-h-screen flex items-center justify-center bg-black">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
         {/* Decorative element */}
@@ -39,12 +40,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* Featured Products — light gray */}
       <section className="py-24 lg:py-32 px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-white/30 text-xs tracking-[0.3em] uppercase mb-4">Our Collection</p>
-          <h2 className="text-3xl md:text-4xl font-light tracking-wider text-white">Featured Fragrances</h2>
-          <div className="w-12 h-px bg-white/20 mx-auto mt-6" />
+          <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-4">Our Collection</p>
+          <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black">Featured Fragrances</h2>
+          <div className="w-12 h-px bg-black/30 mx-auto mt-6" />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
           {featuredProducts.map((product) => (
@@ -54,45 +55,45 @@ export default function HomePage() {
         <div className="text-center mt-16">
           <Link
             href="/shop"
-            className="inline-block border border-white/20 text-white/60 hover:text-white text-xs tracking-[0.2em] uppercase px-10 py-3.5 hover:border-white/50 transition-all duration-500"
+            className="inline-block border border-black/30 text-black/70 hover:text-black text-xs tracking-[0.2em] uppercase px-10 py-3.5 hover:border-black/60 transition-all duration-500"
           >
             View All Fragrances
           </Link>
         </div>
       </section>
 
-      {/* Brand Philosophy */}
-      <section className="py-24 lg:py-32 bg-neutral-950">
+      {/* Brand Philosophy — slightly darker gray panel */}
+      <section className="py-24 lg:py-32 bg-[#eceae4] border-y border-black/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* Image placeholder */}
-            <div className="aspect-[4/5] bg-neutral-900 border border-white/5 flex items-center justify-center">
+            <div className="aspect-[4/5] bg-[#dedad2] border border-black/10 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-32 h-48 mx-auto border border-white/10 flex items-center justify-center">
-                  <span className="text-white/20 text-xs tracking-wider">BRAND IMAGE</span>
+                <div className="w-32 h-48 mx-auto border border-black/20 flex items-center justify-center">
+                  <span className="text-black/30 text-xs tracking-wider">BRAND IMAGE</span>
                 </div>
               </div>
             </div>
             {/* Text */}
             <div>
-              <p className="text-white/30 text-xs tracking-[0.3em] uppercase mb-6">Our Philosophy</p>
-              <h2 className="text-3xl md:text-4xl font-light tracking-wider text-white mb-8 leading-tight">
+              <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-6">Our Philosophy</p>
+              <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black mb-8 leading-tight">
                 Crafted With<br />Intention
               </h2>
-              <div className="space-y-6 text-white/40 text-base leading-relaxed">
+              <div className="space-y-6 text-black/65 text-base leading-relaxed">
                 <p>
                   At {siteConfig.name}, we believe that fragrance is the most intimate form of self-expression. Each scent in our collection has been carefully selected to embody a distinct character — from bold and commanding to subtle and refined.
                 </p>
                 <p>
-                  Our fragrances are sourced from the finest perfume houses and artisan creators, ensuring that every bottle delivers an exceptional olfactory experience. We don't follow trends; we curate timeless scents that become part of your identity.
+                  Our fragrances are sourced from the finest perfume houses and artisan creators, ensuring that every bottle delivers an exceptional olfactory experience. We don&apos;t follow trends; we curate timeless scents that become part of your identity.
                 </p>
                 <p>
-                  Based in Karachi, we bring the world's most exquisite fragrances to your doorstep, with the personal touch that only a dedicated fragrance house can provide.
+                  Based in Karachi, we bring the world&apos;s most exquisite fragrances to your doorstep, with the personal touch that only a dedicated fragrance house can provide.
                 </p>
               </div>
               <Link
                 href="/about"
-                className="inline-block mt-10 text-white/50 hover:text-white text-xs tracking-[0.2em] uppercase border-b border-white/20 hover:border-white/50 pb-1 transition-all duration-300"
+                className="inline-block mt-10 text-black/60 hover:text-black text-xs tracking-[0.2em] uppercase border-b border-black/30 hover:border-black/60 pb-1 transition-all duration-300"
               >
                 Read Our Story
               </Link>
@@ -101,12 +102,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories */}
+      {/* Categories — light gray */}
       <section className="py-24 lg:py-32 px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-white/30 text-xs tracking-[0.3em] uppercase mb-4">Explore</p>
-          <h2 className="text-3xl md:text-4xl font-light tracking-wider text-white">Shop by Category</h2>
-          <div className="w-12 h-px bg-white/20 mx-auto mt-6" />
+          <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-4">Explore</p>
+          <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black">Shop by Category</h2>
+          <div className="w-12 h-px bg-black/30 mx-auto mt-6" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
@@ -118,11 +119,11 @@ export default function HomePage() {
             <Link
               key={category.slug}
               href={`/shop?category=${category.slug}`}
-              className="group relative aspect-[3/4] bg-neutral-900 border border-white/5 hover:border-white/20 overflow-hidden transition-all duration-500 flex items-end p-8"
+              className="group relative aspect-[3/4] bg-[#e4e1d9] border border-black/10 hover:border-black/30 overflow-hidden transition-all duration-500 flex items-end p-8"
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 group-hover:from-black/75 transition-all duration-500" />
               <div className="relative z-20">
-                <p className="text-white/30 text-[11px] tracking-[0.15em] uppercase mb-2">
+                <p className="text-white/60 text-[11px] tracking-[0.15em] uppercase mb-2">
                   {category.count} {category.count === 1 ? 'Fragrance' : 'Fragrances'}
                 </p>
                 <h3 className="text-white text-lg tracking-wider font-light group-hover:translate-x-2 transition-transform duration-500">
@@ -134,13 +135,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-24 lg:py-32 bg-neutral-950 border-y border-white/5">
+      {/* Why Choose Us — slightly darker panel */}
+      <section className="py-24 lg:py-32 bg-[#eceae4] border-y border-black/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-white/30 text-xs tracking-[0.3em] uppercase mb-4">Why {siteConfig.name}</p>
-            <h2 className="text-3xl md:text-4xl font-light tracking-wider text-white">The Difference</h2>
-            <div className="w-12 h-px bg-white/20 mx-auto mt-6" />
+            <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-4">Why {siteConfig.name}</p>
+            <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black">The Difference</h2>
+            <div className="w-12 h-px bg-black/30 mx-auto mt-6" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -181,18 +182,30 @@ export default function HomePage() {
                 ),
               },
             ].map((feature) => (
-              <div key={feature.title} className="text-center p-8 border border-white/5 hover:border-white/10 transition-all duration-500">
-                <div className="text-white/30 flex justify-center mb-6">{feature.icon}</div>
-                <h3 className="text-white text-sm tracking-wider font-light mb-3">{feature.title}</h3>
-                <p className="text-white/30 text-sm leading-relaxed">{feature.description}</p>
+              <div key={feature.title} className="text-center p-8 bg-white border border-black/8 hover:border-black/20 hover:shadow-md transition-all duration-500 rounded-sm">
+                <div className="text-black/50 flex justify-center mb-6">{feature.icon}</div>
+                <h3 className="text-black text-sm tracking-wider font-semibold mb-3">{feature.title}</h3>
+                <p className="text-black/60 text-sm leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-32 lg:py-40 text-center px-6">
+      {/* Customer Reviews — light gray */}
+      <section className="py-24 lg:py-32 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-4">What They Say</p>
+          <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black">
+            Customer Reviews
+          </h2>
+          <div className="w-12 h-px bg-black/30 mx-auto mt-6" />
+        </div>
+        <ReviewSectionClient limit={6} />
+      </section>
+
+      {/* CTA Section — black for contrast */}
+      <section className="py-32 lg:py-40 text-center px-6 bg-black">
         <div className="max-w-3xl mx-auto">
           <p className="text-white/30 text-xs tracking-[0.3em] uppercase mb-6">{siteConfig.name}</p>
           <h2 className="text-3xl md:text-5xl font-light tracking-wider text-white mb-6">

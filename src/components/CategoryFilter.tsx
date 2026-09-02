@@ -16,8 +16,8 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
           onClick={() => onSelect(cat.id)}
           className={`text-[11px] tracking-[0.15em] uppercase px-5 py-2.5 border transition-all duration-300 ${
             selected === cat.id
-              ? 'bg-white text-black border-white'
-              : 'bg-transparent text-white/50 border-white/20 hover:border-white/50 hover:text-white'
+              ? 'bg-black text-white border-black'
+              : 'bg-transparent text-black/50 border-black/20 hover:border-black/50 hover:text-black'
           }`}
         >
           {cat.label}

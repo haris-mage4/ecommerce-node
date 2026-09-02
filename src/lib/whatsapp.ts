@@ -46,3 +46,9 @@ export function getWhatsAppUrl(message: string): string {
   const encodedMessage = encodeURIComponent(message);
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodedMessage}`;
 }
+
+export function getMerchantNotificationUrl(customerPhone: string): string {
+  const message = `Good news! you received an order please verify ${customerPhone}`;
+  const encodedMessage = encodeURIComponent(message);
+  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodedMessage}`;
+}

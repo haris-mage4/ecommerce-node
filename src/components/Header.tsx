@@ -7,7 +7,7 @@ import { useCart } from '@/context/CartContext';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { count, setIsOpen } = useCart();
+  const { count } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,10 +19,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-black/95 backdrop-blur-md border-b border-white/10'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 bg-black transition-all duration-300 ${
+        isScrolled ? 'shadow-lg shadow-black/30' : ''
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -38,27 +36,31 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-10">
             <Link
               href="/shop"
-              className="text-white/70 hover:text-white text-[13px] tracking-[0.15em] uppercase transition-colors duration-300"
+              className="text-white/60 hover:text-white text-[13px] tracking-[0.15em] uppercase transition-colors duration-300 relative group"
             >
               Shop
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
             </Link>
             <Link
               href="/shop?category=bestseller"
-              className="text-white/70 hover:text-white text-[13px] tracking-[0.15em] uppercase transition-colors duration-300"
+              className="text-white/60 hover:text-white text-[13px] tracking-[0.15em] uppercase transition-colors duration-300 relative group"
             >
               Collections
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
             </Link>
             <Link
               href="/about"
-              className="text-white/70 hover:text-white text-[13px] tracking-[0.15em] uppercase transition-colors duration-300"
+              className="text-white/60 hover:text-white text-[13px] tracking-[0.15em] uppercase transition-colors duration-300 relative group"
             >
               About
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
             </Link>
             <Link
               href="/contact"
-              className="text-white/70 hover:text-white text-[13px] tracking-[0.15em] uppercase transition-colors duration-300"
+              className="text-white/60 hover:text-white text-[13px] tracking-[0.15em] uppercase transition-colors duration-300 relative group"
             >
               Contact
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
             </Link>
           </div>
 
@@ -67,7 +69,7 @@ export default function Header() {
             {/* Cart */}
             <Link
               href="/cart"
-              className="relative text-white/70 hover:text-white transition-colors duration-300"
+              className="relative text-white/60 hover:text-white transition-colors duration-300"
               aria-label="Order bag"
             >
               <svg
@@ -93,7 +95,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden text-white/70 hover:text-white transition-colors duration-300"
+              className="lg:hidden text-white/60 hover:text-white transition-colors duration-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -135,7 +137,7 @@ export default function Header() {
           isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-black/95 backdrop-blur-md border-t border-white/10 px-6 py-8 space-y-6">
+        <div className="bg-black border-t border-white/10 px-6 py-8 space-y-6">
           <Link
             href="/shop"
             className="block text-white/70 hover:text-white text-sm tracking-[0.15em] uppercase transition-colors duration-300"
