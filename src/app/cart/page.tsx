@@ -6,6 +6,24 @@ import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
 import { formatPrice, generateWhatsAppMessage, getWhatsAppUrl, getMerchantNotificationUrl, CustomerInfo } from '@/lib/whatsapp';
 import QuantitySelector from '@/components/QuantitySelector';
+import BottleArt from '@/components/BottleArt';
+import { getItemHref } from '@/lib/cart';
+import { products } from '@/data/products';
+import { TESTER_BOX_ID_PREFIX } from '@/data/testers';
+
+function CartItemArt({ productId }: { productId: string }) {
+  if (productId.startsWith(TESTER_BOX_ID_PREFIX)) {
+    return (
+      <div className="flex items-end gap-0.5">
+        {products.slice(0, 3).map((p) => (
+          <BottleArt key={p.id} tone={p.tone} shape={1} label="" showSprig={false} className="w-6 text-black/70" />
+        ))}
+      </div>
+    );
+  }
+  const product = products.find((p) => p.id === productId);
+  return <BottleArt tone={product?.tone ?? '#999999'} shape={Number(productId)} showSprig={false} className="w-16 text-black/70" />;
+}
 
 export default function CartPage() {
   const router = useRouter();
@@ -108,16 +126,15 @@ export default function CartPage() {
               key={item.productId}
               className="border border-black/10 bg-white p-6 flex gap-6"
             >
-              {/* Image placeholder */}
-              <Link href={`/product/${item.slug}`} className="flex-shrink-0 w-24 h-32 bg-[#e4e1d9] border border-black/10 flex items-center justify-center">
-                <span className="text-black/30 text-[10px] tracking-wider">IMG</span>
+              <Link href={getItemHref(item)} className="flex-shrink-0 w-24 h-32 bg-[#e4e1d9] border border-black/10 flex items-center justify-center">
+                <CartItemArt productId={item.productId} />
               </Link>
 
               {/* Info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between">
                   <div>
-                    <Link href={`/product/${item.slug}`} className="text-black text-base tracking-wider font-medium hover:text-black/60 transition-colors">
+                    <Link href={getItemHref(item)} className="text-black text-base tracking-wider font-medium hover:text-black/60 transition-colors">
                       {item.name}
                     </Link>
                     <p className="text-black/40 text-[11px] tracking-wider uppercase mt-1">{item.size}</p>

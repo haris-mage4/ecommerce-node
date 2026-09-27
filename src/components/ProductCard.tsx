@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { formatPrice } from '@/lib/whatsapp';
+import BottleArt from '@/components/BottleArt';
 
 interface ProductCardProps {
   product: Product;
@@ -26,15 +27,14 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="group">
       {/* Image Container */}
-      <Link href={`/product/${product.slug}`} className="block relative overflow-hidden bg-[#e4e1d9] aspect-[3/4]">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 z-10" />
-        {/* Placeholder for product image */}
+      <Link
+        href={`/product/${product.slug}`}
+        className="block relative overflow-hidden bg-[#e4e1d9] aspect-[3/4]"
+        style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${product.tone}26, transparent 70%)` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 z-10" />
         <div className="w-full h-full flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
-          <div className="text-center">
-            <div className="w-20 h-32 mx-auto border border-black/20 rounded-sm flex items-center justify-center">
-              <span className="text-black/40 text-xs tracking-wider uppercase">Image</span>
-            </div>
-          </div>
+          <BottleArt tone={product.tone} shape={Number(product.id)} className="w-3/5 text-black/80" />
         </div>
         {/* Badges */}
         <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">

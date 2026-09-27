@@ -1,83 +1,64 @@
 import Link from 'next/link';
 import { products } from '@/data/products';
-import ProductCard from '@/components/ProductCard';
+import HeroSlider from '@/components/HeroSlider';
+import TesterBox from '@/components/TesterBox';
+import ProductSection from '@/components/ProductSection';
+import Logo from '@/components/Logo';
 import { siteConfig } from '@/lib/config';
 import { ReviewSectionClient } from '@/components/ReviewSectionClient';
 
 export default function HomePage() {
-  const featuredProducts = products.filter((p) => p.featured).slice(0, 6);
+  const bestSellers = products.filter((p) => p.bestseller).slice(0, 4);
+  // Best sellers already have their own section, so feature the rest of the range here
+  const featuredProducts = products.filter((p) => p.featured && !p.bestseller).slice(0, 4);
 
   return (
     <div>
-      {/* Hero Section — keeps dark/black for dramatic impact */}
-      <section className="relative min-h-screen flex items-center justify-center bg-black">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black" />
-        {/* Decorative element */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-5">
-          <div className="w-96 h-96 border border-white rounded-full" />
-        </div>
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <p className="text-white/30 text-xs tracking-[0.4em] uppercase mb-8 animate-fade-in">
-            {siteConfig.name}
-          </p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-[0.1em] text-white mb-8 animate-fade-in-delay-1">
-            THE ESSENCE<br />
-            <span className="font-extralight text-white/80">OF LUXURY</span>
-          </h1>
-          <p className="text-white/40 text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-delay-2">
-            Discover a curated collection of premium fragrances, meticulously crafted for those who appreciate the finer things in life.
-          </p>
-          <Link
-            href="/shop"
-            className="inline-block border border-white/30 text-white text-xs tracking-[0.2em] uppercase px-12 py-4 hover:bg-white hover:text-black transition-all duration-500 animate-fade-in-delay-3"
-          >
-            Shop Collection
-          </Link>
-        </div>
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-px h-16 bg-gradient-to-b from-transparent to-white/30" />
+      <HeroSlider />
+
+      {/* Service strip */}
+      <section className="border-y border-black/10 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-black/10">
+          {['Delivery Across Karachi', 'Order on WhatsApp', 'Tester Boxes Available', 'Long-Lasting Blends'].map((item) => (
+            <p key={item} className="py-5 px-3 text-center text-black/60 text-[11px] tracking-[0.2em] uppercase">
+              {item}
+            </p>
+          ))}
         </div>
       </section>
 
-      {/* Featured Products — light gray */}
-      <section className="py-24 lg:py-32 px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-4">Our Collection</p>
-          <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black">Featured Fragrances</h2>
-          <div className="w-12 h-px bg-black/30 mx-auto mt-6" />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-        <div className="text-center mt-16">
-          <Link
-            href="/shop"
-            className="inline-block border border-black/30 text-black/70 hover:text-black text-xs tracking-[0.2em] uppercase px-10 py-3.5 hover:border-black/60 transition-all duration-500"
-          >
-            View All Fragrances
-          </Link>
-        </div>
-      </section>
+      {/* Best Sellers */}
+      <ProductSection
+        id="best-sellers"
+        eyebrow="Most Loved"
+        title="Best Sellers"
+        products={bestSellers}
+        link={{ href: '/shop?category=bestseller', label: 'Shop All Best Sellers' }}
+      />
+
+      <TesterBox />
+
+      {/* Featured Products */}
+      <ProductSection
+        id="featured"
+        eyebrow="Our Collection"
+        title="Featured Fragrances"
+        products={featuredProducts}
+        link={{ href: '/shop', label: 'View All Fragrances' }}
+      />
 
       {/* Brand Philosophy — slightly darker gray panel */}
       <section className="py-24 lg:py-32 bg-[#eceae4] border-y border-black/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            {/* Image placeholder */}
-            <div className="aspect-[4/5] bg-[#dedad2] border border-black/10 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-32 h-48 mx-auto border border-black/20 flex items-center justify-center">
-                  <span className="text-black/30 text-xs tracking-wider">BRAND IMAGE</span>
-                </div>
-              </div>
+            {/* Brand mark */}
+            <div className="aspect-[4/5] bg-[#f5f4f0] border border-black/10 flex items-center justify-center p-12">
+              <Logo sizes="(min-width: 1024px) 380px, 70vw" className="w-4/5 max-w-sm" />
             </div>
             {/* Text */}
             <div>
               <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-6">Our Philosophy</p>
-              <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black mb-8 leading-tight">
+              <h2 className="font-serif text-4xl md:text-5xl font-light tracking-wider text-black mb-8 leading-tight">
                 Crafted With<br />Intention
               </h2>
               <div className="space-y-6 text-black/65 text-base leading-relaxed">
@@ -85,10 +66,10 @@ export default function HomePage() {
                   At {siteConfig.name}, we believe that fragrance is the most intimate form of self-expression. Each scent in our collection has been carefully selected to embody a distinct character — from bold and commanding to subtle and refined.
                 </p>
                 <p>
-                  Our fragrances are sourced from the finest perfume houses and artisan creators, ensuring that every bottle delivers an exceptional olfactory experience. We don&apos;t follow trends; we curate timeless scents that become part of your identity.
+                  Our emblem says it all: a single bottle wrapped in leaves and blossoms. Every Saad Amir fragrance begins with nature and ends as something personal — timeless scents that become part of your identity.
                 </p>
                 <p>
-                  Based in Karachi, we bring the world&apos;s most exquisite fragrances to your doorstep, with the personal touch that only a dedicated fragrance house can provide.
+                  Based in Karachi, we bring our fragrances to your doorstep with the personal touch that only a dedicated fragrance house can provide.
                 </p>
               </div>
               <Link
@@ -106,7 +87,7 @@ export default function HomePage() {
       <section className="py-24 lg:py-32 px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-4">Explore</p>
-          <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black">Shop by Category</h2>
+          <h2 className="font-serif text-4xl md:text-5xl font-light tracking-wider text-black">Shop by Category</h2>
           <div className="w-12 h-px bg-black/30 mx-auto mt-6" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -140,7 +121,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-4">Why {siteConfig.name}</p>
-            <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black">The Difference</h2>
+            <h2 className="font-serif text-4xl md:text-5xl font-light tracking-wider text-black">The Difference</h2>
             <div className="w-12 h-px bg-black/30 mx-auto mt-6" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -164,8 +145,8 @@ export default function HomePage() {
                 ),
               },
               {
-                title: 'Curated Collection',
-                description: 'A carefully curated selection of the finest fragrances from around the world.',
+                title: 'Tester Boxes',
+                description: 'Not sure yet? Try your favourites as 5ml testers before choosing a full bottle.',
                 icon: (
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-8 h-8">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
@@ -196,7 +177,7 @@ export default function HomePage() {
       <section className="py-24 lg:py-32 px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-black/50 text-xs tracking-[0.3em] uppercase mb-4">What They Say</p>
-          <h2 className="text-3xl md:text-4xl font-light tracking-wider text-black">
+          <h2 className="font-serif text-4xl md:text-5xl font-light tracking-wider text-black">
             Customer Reviews
           </h2>
           <div className="w-12 h-px bg-black/30 mx-auto mt-6" />
@@ -208,7 +189,7 @@ export default function HomePage() {
       <section className="py-32 lg:py-40 text-center px-6 bg-black">
         <div className="max-w-3xl mx-auto">
           <p className="text-white/30 text-xs tracking-[0.3em] uppercase mb-6">{siteConfig.name}</p>
-          <h2 className="text-3xl md:text-5xl font-light tracking-wider text-white mb-6">
+          <h2 className="font-serif text-4xl md:text-6xl font-light tracking-wider text-white mb-6">
             Find Your Signature Scent
           </h2>
           <p className="text-white/40 text-lg font-light mb-12 leading-relaxed">

@@ -14,6 +14,8 @@ export interface Product {
     base: string[];
   };
   image: string;
+  /** Accent colour used for the bottle illustration */
+  tone: string;
   featured: boolean;
   bestseller: boolean;
 }
@@ -35,6 +37,7 @@ export const products: Product[] = [
       base: ['Amber', 'Sandalwood', 'Musk'],
     },
     image: '/images/products/oud-royale.jpg',
+    tone: '#8a6a4a',
     featured: true,
     bestseller: true,
   },
@@ -54,6 +57,7 @@ export const products: Product[] = [
       base: ['Musk', 'Vetiver', 'Vanilla'],
     },
     image: '/images/products/amber-wood.jpg',
+    tone: '#b8874f',
     featured: true,
     bestseller: false,
   },
@@ -73,6 +77,7 @@ export const products: Product[] = [
       base: ['Vanilla Orchid', 'Patchouli', 'Cashmere Wood'],
     },
     image: '/images/products/velvet-noir.jpg',
+    tone: '#6b4257',
     featured: true,
     bestseller: true,
   },
@@ -92,6 +97,7 @@ export const products: Product[] = [
       base: ['Incense', 'Tonka Bean', 'Smoky Accord'],
     },
     image: '/images/products/midnight-santal.jpg',
+    tone: '#3d4250',
     featured: true,
     bestseller: false,
   },
@@ -111,6 +117,7 @@ export const products: Product[] = [
       base: ['Golden Amber', 'Oud', 'White Musk'],
     },
     image: '/images/products/rose-elixir.jpg',
+    tone: '#b77a7a',
     featured: true,
     bestseller: true,
   },
@@ -130,6 +137,7 @@ export const products: Product[] = [
       base: ['Vetiver', 'Labdanum', 'Amber'],
     },
     image: '/images/products/cedar-smoke.jpg',
+    tone: '#6f6a5f',
     featured: false,
     bestseller: false,
   },
@@ -149,6 +157,7 @@ export const products: Product[] = [
       base: ['Soft Woods', 'Cashmeran', 'Ambrette'],
     },
     image: '/images/products/white-musk.jpg',
+    tone: '#bdb5a4',
     featured: true,
     bestseller: false,
   },
@@ -168,6 +177,7 @@ export const products: Product[] = [
       base: ['Patchouli', 'Vanilla Absolute', 'Sandalwood'],
     },
     image: '/images/products/black-orchid.jpg',
+    tone: '#2f2a33',
     featured: false,
     bestseller: true,
   },

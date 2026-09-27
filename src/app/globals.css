@@ -3,14 +3,20 @@
 @theme inline {
   --color-background: #f5f4f0;
   --color-foreground: #111111;
+  --color-ivory: #f5f4f0;
+  --color-sand: #eceae4;
+  --color-stone: #e4e1d9;
+  --color-gold: #a3825a;
   --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-cormorant);
+  --font-script: var(--font-pinyon);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: #f5f4f0;
   color: #111111;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 /* Smooth scrolling */
@@ -73,4 +79,43 @@ html {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Hero slider text entrance */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in > * {
+  opacity: 0;
+  animation: slideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.slide-in > *:nth-child(2) { animation-delay: 0.12s; }
+.slide-in > *:nth-child(3) { animation-delay: 0.24s; }
+.slide-in > *:nth-child(4) { animation-delay: 0.36s; }
+.slide-in > *:nth-child(5) { animation-delay: 0.48s; }
+
+/* Slider progress bar */
+@keyframes progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-in > *,
+  .animate-fade-in,
+  .animate-fade-in-delay-1,
+  .animate-fade-in-delay-2,
+  .animate-fade-in-delay-3 {
+    animation: none;
+    opacity: 1;
+  }
 }

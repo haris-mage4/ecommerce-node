@@ -70,3 +70,8 @@ export function getCartTotal(items: CartItem[]): number {
 export function getCartCount(items: CartItem[]): number {
   return items.reduce((count, item) => count + item.quantity, 0);
 }
+
+// Tester boxes store an absolute path as their slug; products store a product slug
+export function getItemHref(item: Pick<CartItem, 'slug'>): string {
+  return item.slug.startsWith('/') ? item.slug : `/product/${item.slug}`;
+}

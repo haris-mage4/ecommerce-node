@@ -6,6 +6,7 @@ import { Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { formatPrice } from '@/lib/whatsapp';
 import QuantitySelector from '@/components/QuantitySelector';
+import BottleArt from '@/components/BottleArt';
 
 interface Props {
   product: Product;
@@ -45,12 +46,11 @@ export default function ProductDetailClient({ product }: Props) {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
         {/* Product Image */}
-        <div className="aspect-[3/4] bg-[#e4e1d9] border border-black/10 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-32 h-48 mx-auto border border-black/20 rounded-sm flex items-center justify-center">
-              <span className="text-black/35 text-xs tracking-wider uppercase">Product Image</span>
-            </div>
-          </div>
+        <div
+          className="aspect-[3/4] bg-[#e4e1d9] border border-black/10 flex items-center justify-center"
+          style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${product.tone}2e, transparent 70%)` }}
+        >
+          <BottleArt tone={product.tone} shape={Number(product.id)} className="w-1/2 text-black/80" />
         </div>
 
         {/* Product Info */}

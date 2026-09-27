@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { siteConfig } from '@/lib/config';
+import Logo from '@/components/Logo';
 
 export default function Footer() {
   return (
@@ -8,10 +9,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block">
-              <span className="text-black text-lg tracking-[0.3em] font-light">
-                NOIR <span className="font-semibold">ESSENCE</span>
-              </span>
+            <Link href="/" className="inline-block" aria-label="Saad Amir home">
+              <Logo sizes="120px" className="w-28" />
             </Link>
             <p className="mt-4 text-black/50 text-sm leading-relaxed max-w-xs">
               {siteConfig.description}
@@ -77,6 +76,14 @@ export default function Footer() {
                   className="text-black/50 hover:text-black text-sm transition-colors duration-300"
                 >
                   Best Sellers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#tester-box"
+                  className="text-black/50 hover:text-black text-sm transition-colors duration-300"
+                >
+                  Tester Box
                 </Link>
               </li>
             </ul>

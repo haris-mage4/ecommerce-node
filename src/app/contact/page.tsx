@@ -55,7 +55,7 @@ export default function ContactPage() {
           <div className="border border-black/10 bg-white p-8">
             <h3 className="text-black text-xs tracking-[0.2em] uppercase mb-4 font-semibold">Instagram</h3>
             <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="text-black/65 hover:text-black text-lg transition-colors duration-300">
-              @noiressence
+              {siteConfig.instagramHandle}
             </a>
           </div>
           <div className="border border-black/10 bg-white p-8">
